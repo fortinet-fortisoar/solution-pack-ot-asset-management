@@ -3,92 +3,236 @@
 
 # Usage
 
+To understand the process FortiSOAR&trade; follows to respond to **Asset Management**, **Baseline changes over assets**, and **Alerts over Assets**, we have included following scenarios with this solution pack:
+
+- [OT - Add Sample Assets](#ot---add-sample-assets)
+
+- [OT - Add Sample Alerts](#ot---add-sample-alerts)
+
+- [OT - Stuxnet Attack Scenario](#ot---stuxnet-attack-scenario)
+
+- [OT - Asset Change Activity Scenario](#ot---asset-change-activity-scenario)
+
+Refer to the subsequent sections to understand how this solution pack's automation addresses your needs.
+
+<table>
+    <tr>
+        <td><strong>IMPORTANT</strong></td>
+        <td>For seamless execution of included scenarios, set the global variable <code>Demo mode</code> to <code>true</code>.</td>
+    </tr>
+</table>
+
 Refer to [Simulate Scenario documentation](https://github.com/fortinet-fortisoar/solution-pack-soc-simulator/blob/develop/docs/usage.md) to understand how to simulate and reset scenarios.
 
-To understand the process FortiSOAR follows to respond to **Asset Management**, **Baseline changes over assets** and **Alerts over Assets**, we have included a scenario &mdash; `OT - Add Sample Assets`, `OT - Add Sample Alerts`, `OT - Stuxnet Attack Scenario` and `OT - Asset Change Activity` with this solution pack. 
+## OT - Add Sample Assets
 
-Refer to the section `OT - Asset Management` to understand how this solution pack automation addresses your needs.
+This scenario generates 87 IT/OT assets as per the Purdue model based on various criticality levels, types, and other asset categorizations as sample data.
 
-# OT- Asset Management
+To run this scenario and generate the assets, perform the following steps:
 
-### Step to be followed after installing SP:
+1. Under the FortiSOAR&trade;'s left navigation panel, select to open **Simulations**.
 
-1. Ingest MITRE **Group**, **Tactics**, **Techniques**, **Sub-techniques**, **Mitigations**, **Software**, and **Mitigation** data using `MITRE ATT&CK` connector on `ICS` configuration.
+2. Select the scenario **OT - Add Sample Assets**.
 
-> **NOTE**: On alert creation, IOCs are enriched, and the alerts are correlated with Techniques, Mitigation, and all other records for the MITRE ATT&CK Id available in the alert.
+3. Click **Simulate Scenario**.
 
-## Simulation mode
+4. To view the added sample assets, hover over **Resources** under the FortiSOAR&trade;'s left navigation panel, and select **Assets**.
 
-The simulation mode has some sample data that helps you get a better understanding of how the solution pack functions. Following steps help you use the solution pack with some included sample data.
+![](./res/added-sample-assets.png)
 
-1. **OT - Add Sample Assets**
+## OT - Add Sample Alerts
 
-    - Browse to `Simulations` > `OT - Add Sample Assets` scenario and click **Simulate Scenario**.
+This scenario generates 12 well-populated alerts associated with assets, generated in the [OT - Add Sample Assets](#ot---add-sample-assets) scenario, as sample data.
 
-    - This scenario adds 86 different sample OT Assets (different Levels, Types etc.) for testing dashboards, use case playbooks, reports and other actions.<br>
+To run this scenario and generate the alerts, perform the following steps:
 
-2. **OT - Add Sample Alerts**
+1. Under the FortiSOAR&trade;'s left navigation panel, select to open **Simulations**.
 
-    - Browse to `Simulations` > `OT - Add Sample Alerts` scenario and click **Simulate Scenario**.
+2. Select the scenario **OT - Add Sample Alerts**.
 
-    - This scenario adds 12 well populated sample OT Alerts for testing dashboards, use case playbooks, reports and other actions.<br>
+3. Click **Simulate Scenario**.
 
-3. **OT - Stuxnet Attack Scenario**
+4. To view the added sample alerts, hover over **Incident Response** under the FortiSOAR&trade;'s left navigation panel, and select **Alerts**.
 
-    - Make sure the global variable **Demo mode** is set to `true`. 
+![](./res/added-sample-alerts.png)
 
-    - Browse to `Simulations` > `OT - Stuxnet Attack Scenario` scenario and click **Simulate Scenario**.
+## OT - Stuxnet Attack Scenario
 
-    - Four Alerts get created each at an interval of 2 seconds:
-        - Stuxnet peer to peer communication attempt
-        - Anomalous communication between two Windows XP machines
-        - Communication between public and private networks
-        - STEP7 configuration download command
+Stuxnet Attack Scenario demonstrates the *Stuxnet Incident* to observe how FortiSOAR&trade; behaves when encountering a real cyber attack. Although Stuxnet is a dated piece of malware, it represents the complexity of real targeted attacks and is infamous for many reasons.
 
-    - If an asset does not already exist, it is created and added to the record with the following hostname:
-        - PLC S7-400-324
-        - Dell - 5490-42E6
-        - ThinkCentre M910s-1181
-        - HP - PB7181
+This scenario generates following alerts, each at an interval of 2 seconds:
 
-    - Each alert get associated with assets based on the Source and Destination IP.
+- Stuxnet peer-to-peer communication attempt
+- Anomalous communication between two Windows XP machines
+- Communication between public and private networks
+- STEP7 configuration download command
 
-    - **Group**, **Tactics**, **Technique**, **Sub-Technique**, and **Software** get linked to alert under `Correlations` tab of Alert.
-    
-    - **Mitigation** get correlated to alert `Recommended ATT&CK Mitigations` tab.
+To run this scenario and generate the alerts, perform the following steps:
 
-    - Once the alert has been enriched, open the `Stuxnet peer to peer communication attempt` alert and look for a similar alert in the Workspace `Recommendations` tab. 
+1. Under the FortiSOAR&trade;'s left navigation panel, select to open **Simulations**.
 
-    - Escalate the alert to an incident by checking `Select All` and `Include this record` then running the playbook **Escalate**. Please provide all incident details. (An incident is created with the link available in the alert's comment)
+2. Select the scenario **OT - Stuxnet Attack**.
 
-    - Incident get correlated with all the **IOCs**, **Alerts**, **Assets**, **Technique**, **Mitigation**, and **Software**.
+3. Click **Simulate Scenario**.
 
-    - Click on **Quarantine Asset and Raise Ticket** to quarantine assets and raise ticket for assets.
+4. To view the added sample alerts, hover over **Incident Response** under the FortiSOAR&trade;'s left navigation panel, and select **Alerts**.
 
-    - You can generate report by using **Generate Incident Summary Report**
-    
-    - Use the `Setup War Room` button to create a war room. All of the alerts, incidents, affected assets, and IOCs will be in the war room.
-    
-    - Playbooks in the War Room can be used to take action, such as `Isolate Devices From Network`, `Scan All Assets Involved`, and `Update Firewall Policy`.
+![](./res/added-stuxnet-alerts.png)
 
-4. **OT - Add Sample Asset Change Activity Record**
+### Enrichment
 
-- Browse to `Simulations` > `OT - Add Sample Asset Change Activity Record` scenario and click **Simulate Scenario**.
+- Each alert is linked to the following assets based on their source and destination IP:
 
-    >**NOTE**: Playbook: **Scenario - OT - Asset Change Activity** has variable `dueDays` (*Days required to complete change activity*). You can populate these variables with your preferred values in the *Configuration* step.
+    - PLC S7-400-324
+    - Dell - 5490-42E6
+    - ThinkCentre M910s-1181
+    - HP - PB7181
 
-- With a given value of due date in `dueDays` two Asset Change Activity entries are made.
-    - Add New Cyber Asset - Siemens S7-400-S621
-    - Medium Impact Baseline Change - Stratix 5950-RW41
+    ![](./res/stuxnet-peer-to-peer-linked-assets.png)
 
-- Assets are linked and can be seen in the Assets & Vulnerabilities tab.
+- The *Technique ID* in an alert ensures linking of MITRE ATT&CK's data &ndash; *Group*, *Tactics*, *Technique*, *Sub-Technique*, and *Software*. This data appears under the alert's **Correlations** tab.
 
-- Once the record has been created, execute the **Add Task From Templates** to assign different tasks to different people. 
+    ![](./res/alert-mitre-correlations-tab.png)
 
-- New tasks get created as priority `Medium` once the previous task is completed.
+- Mitre ATT&CK's suggested *Mitigations* are fetched using the *Technique ID* and are listed under the alert's **Recommended ATT&CK Mitigations** tab.
 
-- New task can be added by using **Add New Task** playbook.
+    ![](./res/alert-mitre-mitigation-tab.png)
 
-- Once all task get completed record get closed.
+<table>
+    <tr>
+        <td><strong>TIP</strong></td>
+        <td>The <strong>Workspace</strong> panel lists alerts similar to <strong>Stuxnet peer-to-peer communication attempt</strong>. To know more about the Workspace panel refer to the platform documentation at <a href="https://docs.fortinet.com/document/fortisoar/7.4.1/user-guide/841633/war-rooms#Workspace_-_Enabling_Communication">Workspace - Enabling Communication</a>.</td>
+    </tr>
+</table>
 
-- To generate the report, execute **Generate Compliance Report** and report get attached to particular record comments.
+### Recommended Actions for Alerts
+
+1. You can escalate these alerts to an incident from an alert's *Workspace* panel.
+
+    ![](./res/alert-workspace-recommendation.png)
+
+2. Navigate to the **Records** tab:
+
+    1. Select **Select All** and **Include this record** checkboxes.
+    2. Click the **Playbook** drop-down.
+    3. Select **Escalate**.
+
+3. On the **Escalate** pop-up window, enter relevant details and click the button **Escalate**.
+
+4. Navigate to the **Comments** tab under the *Workspace* panel to view the link referencing the newly-created incident.
+
+5. Click the link in the alert's comment to open the incident. The incident opens in a new browser tab.
+
+### Recommended Actions for Incidents
+
+Incidents are correlated with all the IOCs (under *Indicators*), *Alerts*, *Assets*, MITRE ATT&CK's *Group*, *Tactics*, *Technique*, *Sub-techniques*, *Software*, and *Mitigation*.
+
+![](./res/mitre-attack-incident-spread.png)
+
+1. Click the button **Execute** on the incident's screen.
+
+2. Select the **Quarantine Asset and Raise Ticket** playbook, under *Execute*, to run it.
+
+3. Click **Quarantine Assets**, after reviewing the listed assets, on the modal that appears. This action quarantines the listed assets and raises a ticket.
+
+    ![](./res/incident-asset-quarantine.png)
+
+    <table>
+        <tr>
+            <td><strong>NOTE</strong></td>
+            <td>This playbook quarantines the asset on <em>Fortinet FortiEDR</em> and raises a ticket on <em>ServiceNow</em> for further action.
+            You can also integrate your preferred EDR and ticketing solutions.</td>
+        </tr>
+    </table>
+
+4. You can generate report by using **Generate Incident Summary Report** button.
+
+5. Use the **Setup War Room** button to create a war room.
+
+6. Click the link in the incident's comment to open the war room. The war room opens in a new browser tab.
+
+### Recommended Actions for War Room
+
+The war room lists the incident from where it was created. Along with the incident it also lists associated alerts, affected assets, and IOCs (Indicators of Compromise).
+
+Following playbooks can be run to simulate actual actions that can be performed using FortiSOAR&trade; playbooks:
+
+
+- *Isolate Devices From Network*
+- *Scan All Assets Involved*
+- *Update Firewall Policy*.
+
+## OT - Asset Change Activity Scenario
+
+This scenario generates sample *Asset Change Activity* records as follows:
+
+| Type                          | Asset Name          | Record Title                                      |
+|:------------------------------|:--------------------|:--------------------------------------------------|
+| Add Cyber Asset               | Siemens S7-400-S621 | Add Cyber Asset - Siemens S7-400-S621             |
+| Medium Impact Baseline Change | Stratix 5950-RW41   | Medium Impact Baseline Change - Stratix 5950-RW41 |
+
+These sample records demonstrate the process of conducting an *Asset Change Activity* for an asset. The sample Asset Change Activity records have a tag, `Sample`, for easy identification.
+
+To run this scenario and generate the assets, perform the following steps:
+
+1. Under the FortiSOAR&trade;'s left navigation panel, select to open **Simulations**.
+
+2. Select the scenario **OT - Asset Change Activity Scenario**.
+
+3. Click **Simulate Scenario**.
+
+    <table>
+        <tr>
+            <td><strong>NOTE</strong></td>
+            <td><strong>Scenario - OT - Asset Change Activity</strong> has a variable <code>dueDays</code> (<em>Days required to complete change activity</em>). You can populate this variable with your preferred value in the <em>Configuration</em> step.</td>
+        </tr>
+    </table>
+
+4. Under the FortiSOAR&trade;'s left navigation panel, select to open **Resources** > **Asset Change Activities**.
+
+    ![](./res/asset-change-activities.png)
+
+5. Open any of the following activities listed.
+
+    - Add Cyber Asset
+
+    - Medium Impact Baseline Change
+
+    <table>
+        <tr>
+            <td><strong>NOTE</strong></td>
+            <td>For purposes of this documentation, we have selected the <strong>Medium Impact Baseline Change - Stratix 5950-RW4</strong> activity.</td>
+        </tr>
+    </table>
+
+    The **Assets & Vulnerabilities** tab in the *Medium Impact Baseline Change - Stratix 5950-RW4* activity lists the linked assets.
+
+### Recommended Actions for Asset Change Activity
+
+1. Click the **Add Task From Templates** button to launch **Specify Assignees and Approvers for Tasks** modal.
+
+    ![](./res/asset-change-assign-approve-tasks.png)
+
+2. Fill in the assignees and approver information.
+
+3. Click **Add Task** button to add this task. This creates a new task with priority *Medium* under the **Task Management** tab.
+
+4. Select the **Task Management** tab to open the task management board.
+
+    ![](./res/asset-change-activity-pm-board.png)
+
+5. Edit the open task and mark the status as completed. This moves the task to the *Completed* bucket and creates another task with priority *Medium* under the *Open* bucket. This process repeats until all tasks are moved to *Completed* bucket.
+
+<table>
+    <tr>
+        <td><strong>TIP</strong></td>
+        <td>To add new tasks, click the <strong>Add New Task</strong> button.</td>
+    </tr>
+</table>
+
+The record **Medium Impact Baseline Change - Stratix 5950-RW4** closes once all tasks are completed.
+
+To generate the report, click **Generate Compliance Report** button. The report is attached to the comment, under the *Workspace* panel, associated with that record.
+
+| [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Contents](./contents.md) |
+|-----------------------------------------|-------------------------------------------|---------------------------|
